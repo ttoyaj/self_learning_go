@@ -1,0 +1,51 @@
+package main
+
+import (
+	"fmt"
+)
+
+var version int = 1 // This was just a check to show that you need to have var when global declarations
+
+type rectangle struct {
+	l, b int
+}
+
+type circle struct {
+	r int
+}
+
+type shape interface {
+	area() int
+}
+
+func (ci circle) area() int {
+	return 3 * ci.r * ci.r
+}
+
+func (re rectangle) area() int {
+	return re.l * re.b
+}
+
+func PrintArea(s shape) {
+	fmt.Printf("Area of %T is : %0.2f \n", s, s.area())
+
+}
+func Day1toMain() {
+
+	r := rectangle{l: 10, b: 20}
+	fmt.Println(r)
+
+	c := circle{5}
+	fmt.Println(c)
+
+	fmt.Println(version)
+
+	shapes := []shape{
+		rectangle{4, 5},
+		circle{4},
+	}
+
+	for _, v := range shapes {
+		PrintArea(v)
+	}
+}
